@@ -43,6 +43,7 @@ import PQueue from 'p-queue';
                         if (percentage) {
                             progress[file_key].percentage = Number(percentage.toFixed(2))
                             progress[file_key].status = 'Downloading'
+                            progress[file_key].time = new Date().toLocaleString()
                         };
                         updateProgressDisplay();
                     },
@@ -97,7 +98,8 @@ import PQueue from 'p-queue';
         progress[file_key] = {
             percentage: 0.000,
             status: 'Waiting for queue',
-            error: 'No Error'
+            error: 'No Error',
+            time: new Date().toLocaleString()
         };
         queue.add(() => downloadFile(url, file_key));
     });
